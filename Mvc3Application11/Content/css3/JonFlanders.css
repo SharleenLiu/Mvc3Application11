@@ -1,0 +1,22 @@
+﻿body 
+{
+    font-family: Arial;
+    background-color: rgba(0,0,0,.5);
+}
+
+h1:after { content: ' Desktop size page';}
+
+@media screen and (max-width: 768px)
+{
+    body {background-color: rgba(255,0,0,.5);}
+    h1{ font-size: 1.2em;} /* use em for better responsive design*/
+    h1:after { content: ' tablet size page';}               
+}
+  
+@media screen and (max-width: 480px)
+{
+    body {background-color: rgba(0,0,255,.5);}
+    h1{ font-size: 1.0em;}
+    h1:after { content: ' mobile size page';}               
+}
+        

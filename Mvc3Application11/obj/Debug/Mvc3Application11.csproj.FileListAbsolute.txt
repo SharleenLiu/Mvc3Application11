@@ -1,0 +1,7 @@
+C:\WebApps\Mvc3Application11\Mvc3Application11\bin\Mvc3Application11.dll
+C:\WebApps\Mvc3Application11\Mvc3Application11\bin\Mvc3Application11.pdb
+C:\WebApps\Mvc3Application11\Mvc3Application11\bin\EntityFramework.dll
+C:\WebApps\Mvc3Application11\Mvc3Application11\bin\EntityFramework.xml
+C:\WebApps\Mvc3Application11\Mvc3Application11\obj\Debug\ResolveAssemblyReference.cache
+C:\WebApps\Mvc3Application11\Mvc3Application11\obj\Debug\Mvc3Application11.dll
+C:\WebApps\Mvc3Application11\Mvc3Application11\obj\Debug\Mvc3Application11.pdb

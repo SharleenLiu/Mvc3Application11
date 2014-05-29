@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (false) 
+{ 
+    <script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script> 
+    <script src="../../Scripts/jquery-ui-1.8.11.min.js" type="text/javascript"></script> 
+    <script src="../../Scripts/html5shiv.js" type="text/javascript"></script>    
+    <script src="../../Scripts/modernizr-1.7.min.js" type="text/javascript"></script> 
+    @*<script src="../../Scripts/less-1.3.1.min.js" type="text/javascript"></script>*@
+}
+ 
+<h2>@ViewBag.Message</h2>
+<article>
+    First lets talk about a little background.  The popularity of the Single Page Application (SPA) has seen its rise and fall, as companies like twitter moved from server side page renering to loading the initial page with ajax calls back to the server. Then after a few months, they moved back to initial server side rendering because of the perceived page load to the browser. After all, the aspect of user experience that matters on the web is perceived page load.
+</article>
+<div id="div11">
+    <div id="firstchild">
+        cell 1 here
+    </div>
+    <div id="secondchild">
+        another cell 2
+    </div>
+</div>
+<div id="content" style=" text-align:justify; width:500px;">
+    More than 48,000 photos from 98 countries were submitted to the Veolia Environnement (sic) Wildlife Photographer of the Year competition held by the Natural History Museum in London, and the winning entries from amateurs and professionals are incredible, and in some cases downright mesmerizing. 
+</div>
+<div id="softcorner" class="softcorner">
+<mark>Pretty cornner More than 48,000 photos from 98 countries were submitted</mark> to the Veolia Environnement (sic) Wildlife Photographer of the Year competition held by the Natural History Museum in London, and the winning entries from amateurs and professionals are incredible, and in some cases downright mesmerizing. 
+
+</div>
+<aside class="divaside">
+    New York Pink Pony Day volunteer opportunities are still available during the Bake Sale and Ralph Lauren Saloon on Thursday, October 25. Sign up today! (Posted October 17, 2012) 
+</aside>
+<time datetime="2012-06-19T13:25:22-8:00" pubdate>June 19, 2012</time>
+
+<div id="result"><br /></div>
+<br /><br />
+hello art
+
+<div >
+    <input id="Text1" type="color" >
+        
+    </input>
+
+    
+</div>
+<div >
+    <input id="Text1" type="text" value="xiaohongliu" />
+
+    <input class="load-tweets" id="Submit1" type="submit" value="Load tweets" />
+
+</div>
+
+<script type="text/javascript">
+
+    //alert("_enableHTML5 " + Modernizr._enableHTML5);
+    //alert("boxshadow " + Modernizr.boxshadow);
+    //alert("mark " + Modernizr.mark);
+    //alert("aside " + Modernizr.aside);
+    //alert("time " + Modernizr.time);
+    //alert("article " + Modernizr.article);
+    //alert("canvastext " + Modernizr.canvastext);
+    //alert("audio " + Modernizr.audio);
+    //alert("video " + Modernizr.video);    
+    //alert("aside" + Modernizr.aside);
+    //alert("input.required " + Modernizr.input.required);
+    //alert("" + Modernizr.input
+    //alert("media queries" + Modernizr.input.max);
+    alert("input: " + Modernizr.input.required);
+
+
+
+    if (typeof (Storage) !== "undefined") {
+        localStorage.lastname = "Liu";
+        localStorage.firstname = "Xiaohong";
+        //document.getElementById("result").innerHTML = "Last name: " + localStorage.lastname;
+        //$("#result").val("your name: " + localStorage.lastname + ", ");        
+        $("#result").text("your name: " + localStorage.lastname + ", " + localStorage.firstname);                
+    }
+    else {
+        document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+
+   
+    $(document).ready(function () {
+    
+//        alert("canvas " + Modernizr.canvas);
+//        alert("video " + Modernizr.video);
+
+//        $('.load-tweets').submit(function (e) {
+//            e.preventDefault();
+
+//            var user = $(this).find('input').val();
+//            timeline(user).done(function (tweets) {
+//                var el = $('.twitter').empty(),
+//                    lis = [];
+
+//                for (var i = 0, il = tweets.length; i < il; i++) {
+//                    lis.push($('<li><strong>' + user + '</strong>: ' + tweets[i].text + '</li>'));
+//                }
+
+//                el.append(lis);
+//            });
+//        });
+
+//        timeline('xiaohongliu');
+
+//        function timeline(user) {
+//            //http://api.teitter.com/1/statuses/user_timeline.json?id=xiaohongliu&skip_user=true&include_rts=true&include_entities=true&callback=?
+//            var myurl = 'http://api.teitter.com/1/statuses/user_timeline.json?id=' + user + '&skip_user=true&include_rts=true&include_entities=true&callback=?';
+//            alert(myurl);
+
+//            //return $.getJSON('http://api.teitter.com/1/statuses/user_timeline.json?id=' + user + '&skip_user=true&include_rts=true&include_entities=true&callback=?');
+
+//        }
+    });
+
+</script>
+

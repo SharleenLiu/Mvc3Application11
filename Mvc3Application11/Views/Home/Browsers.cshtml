@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Browsers";
+}
+@if (false) 
+{ 
+    <script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>     
+    @*<script src="../../Scripts/modernizr-1.7.min.js" type="text/javascript"></script>*@  
+    <script src="../../Scripts/modernizr.custom-2.6.2.js" type="text/javascript"></script>   
+    <script src="../../Scripts/modernizerApp.js" type="text/javascript"></script>   
+}
+<h2>Browsers</h2>
+
+<audio><h2>Audio is not supported in this browser</h2></audio>
+<canvas><h2>Canvas is not supported in this browser</h2></canvas>
+<video><h2>Video is not supported in this browser</h2></video>
+
+<script type="text/javascript">
+
+    $(function () {
+        HTML5App.initialize.init();
+    });
+
+    //manually
+    function support_canvas() {
+        return !!document.createElement('canvas').getContext;
+    }    
+    alert("Supports Canvas: " + support_canvas());
+
+    //use Modernizr
+    alert("Modernizr Canvas: " + Modernizr.canvas);
+</script>

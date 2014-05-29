@@ -1,0 +1,157 @@
+﻿@{
+    ViewBag.Title = "jQueryDemo";
+    //Layout = null;
+}
+@if (false)
+{
+    <script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script> 
+}
+
+<script type="text/javascript">
+    //Collection Manipulation Functions
+    var myArray = [1, 2, 3, 3, 4, 4, 5];
+    var myArray2 = [6,7,8];
+
+    if ($.inArray(4, myArray) != -1)
+        console.log("4 is in the array");
+
+    $.unique(myArray);
+    console.log(myArray);
+
+    $.merge(myArray, myArray2);
+    console.log(myArray);
+
+    var newArray = $.map(myArray, function (item, idx) {
+        return item * 2;
+    });
+    console.log(newArray);
+
+    var greppedArray = $.grep(myArray, function (item) {
+        return item % 2 == 0;
+    });
+    console.log(greppedArray);
+
+    //$(function () {
+        //console.log($(".jQuerydiv"));
+        //console.log($.makeArray($(".jQuerydiv")));
+    //});
+
+    //holdReady Function
+//    var loaded = false;
+//    $.holdReady(true);
+//    $.getScript("../../Scripts/plugin.js");
+
+//    function printJSReady() {
+//        if (loaded)
+//            $("#output").append("<br /> JS loaded");
+//        else
+//            $("#output").append("<br /> JS not loaded");
+//    }
+
+//    jQuery(function () {
+//        $("#output").append("jQuery ready event firing");
+//        printJSReady();
+//        $("#output").click(printJSReady);
+//    });
+
+//    $(function () {
+//        $.fn.everyThird = function () {
+//            var arr = [];
+//            $.each(this, function (idx, item) {
+//                if (idx % 3 == 0)
+//                    arr.push(item);
+//            });
+//            return this.pushStack(arr, "everyThird", "");
+//        }
+
+//        $("#clickme").click(function () {
+//            $(".jQuerydiv").everyThird().css("color", "#AA0000").end().css("font-weight", "bold");
+//        });
+//    });
+
+    //parseJASON
+    $(function () {
+
+        var jsonObject = { "fname": "Joe", "lname": "Smith", "age": "36" }; //this is a Jason object
+        $("#divParseJASON").append("Using a Jason Object <br />" + jsonObject.lname + ", " + jsonObject.fname + ", age is " + jsonObject.age + "<br />");
+        
+        var jsonString = '{ "fname":"Joe", "lname":"Smith", "age":"36" }';  //this is a string of Jason
+        var jsObject = $.parseJSON(jsonString);
+        //console.log(jsObject);
+        $("#divParseJASON").append("<br />" + jsObject.fname + " " + jsObject.lname + ", age: " + jsObject.age);
+
+    });
+
+    //extend Function demo 2
+    var animal = {
+        actions: {
+            eat: function () { console.log("I'm eating"); },
+            sit: function () { console.log("I'm sitting"); }
+        }
+    }
+
+    var dog = {
+        actions: {
+            bark: function () { console.log("I'm barking!"); },
+            dig: function () { console.log("I'm digging"); }
+        }
+    }
+
+    dog.actions.bark();
+    dog.actions.dig();
+    //$.extend(dog, animal); 
+    $.extend(true, dog, animal);
+    dog.actions.eat();
+    dog.actions.sit();
+    //console.log(dog.actions.bark); //after extended no longer can bark, so need $.extend(true, dog, animal), deep clone;
+
+    dog.actions.dig();
+
+
+    //extend Function demo 1
+//    var animal = {
+//        eat: function () { console.log("I'm eating."); }
+//    }
+//    var dog = {
+//        bark: function () { console.log("I'm barking!"); }
+//    }
+//    var cat = {
+//        meow: function () { console.log("meow!!!"); }
+//    }
+
+//    var catdog = {}
+//    $.extend(catdog, cat, dog, animal);
+//    catdog.eat();
+//    catdog.bark();
+//    catdog.meow();
+
+//    dog.bark();
+//    console.log(dog.eat);
+
+//    //merge all functions to the first object
+//    $.extend(dog, animal);
+//    dog.eat();
+
+//    animal.eat = function () { console.log("I'm still eating now..."); }
+//    animal.eat(); //new function 
+//    dog.eat();    //old function
+
+
+</script>
+
+<h3>parse JASON</h3>
+<div id="divParseJASON"></div>
+
+<h2>PushStack Demo</h2>
+<input id="clickme" type="button" value="click me" />
+
+<h1>holdReady Demo</h1>
+<div id="output" style="background-color:Yellow"></div>
+
+<div id="out1" class="jQuerydiv">1</div>
+<div id="out2" class="jQuerydiv">2</div>
+<div id="out3" class="jQuerydiv">3</div>
+<div id="out4" class="jQuerydiv">4</div>
+<div id="out5" class="jQuerydiv">5</div>
+<div id="out6" class="jQuerydiv">6</div>
+<div id="out7" class="jQuerydiv">7</div>

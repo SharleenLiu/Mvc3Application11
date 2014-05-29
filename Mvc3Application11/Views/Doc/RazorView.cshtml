@@ -1,0 +1,122 @@
+﻿@using Mvc3Application11.Models
+@using Mvc3Application11.ExtensionHelper
+@{
+    ViewBag.Title = "RazorView";
+    var message = "Hello, World!";
+}
+
+<h2>1. Code Blocks and Variables</h2>
+@message!!!<br /><br />
+ 
+@for (var i = 0; i < 10; i++)
+{
+    <div>
+        @message
+    </div>
+}
+
+<h2>2. Explicit Expressions</h2>
+PN@Model.PartNumber
+<br />
+@*PN@(Model.PartNumber)*@
+
+<h2>3. Mixing Code and Text</h2>
+yes
+@foreach(var item in Model)
+{
+    <div>
+        @item &nbsp;&nbsp;
+        PID@(item.ProductID)
+    </div>
+}
+
+@*no  Razor won't make the transition if you want to output plain text.
+@foreach(var item in Model)
+{
+    Item: @item  
+}*@
+
+@*good, In this case, Razor thinks "Item:" is part of your C# code, so you'll have a compiler error. The easiest solution to this edge case is to use @: to switch from C# into text. <br />
+*@
+@foreach(var item in Model)
+{
+    @:Item: @item.Name<br />
+
+}
+
+<h2>4. Comments - start with @@* and end with *@@. Nothing inside a comment will execute or appear in the output</h2>
+
+<h2>5. Using @@ and _ with HTML Helpers</h2>
+@Html.ActionLink("RazorView", "RazorView", null, 
+    htmlAttributes: new { @class="special", data_ajax="true"})
+@*<a class="special" data-ajax="true" href="/Doc/RazorView">RazorView</a>*@
+<br />
+@Html.ActionLink("About", "About", "Home", null, 
+    htmlAttributes: new { @class="special", data_ajax="true"})
+@*<a class="special" data-ajax="true" href="/Home/About">About</a>*@
+
+<h2>6. Removing the WebForms View Engine</h2>
+inside Application_Start of Global.asax.cs file, add:
+<pre>
+ViewEngines.Engines.Clear();
+ViewEngines.Engines.Add(new RazorViewEngine());
+</pre>
+
+<h2>7. @@helpers</h2>
+You have 
+   @PluralPick(Model.Count, "octopus", "octopuses") 
+in your collection. 
+ 
+@helper PluralPick(int amount, string singular, string plural) {
+    <span> 
+        @amount @(amount == 1 ? singular : plural)
+    </span>
+}
+
+<h2>8. App_Code Helpers - so you can now use PluralPicks from any view in the application</h2>
+Now you have
+@Helper.PluralPicks(Model.Count, "apple", "apples") 
+in your packets
+    
+<h2>9. Building Views and Eagerly Generating Code From Razor</h2>
+
+@{
+    var comics = new[] { 
+        new ComicBook {Title = "Groo", Publisher = "Dark Horse Comics"},
+        new ComicBook {Title = "Spiderman", Publisher = "Marvel"}
+    };
+
+    List<ComicBook> clist = new List<ComicBook>
+    {
+        new ComicBook {Title = "Great", Publisher = "White Horse Comics"},
+        new ComicBook {Title = "Spiderman 3", Publisher = "Marvel 3"}
+    };
+}
+
+<h2>10. Templated Razor Delegates</h2>
+for not ENumerable var<br />
+<table>
+@comics.List(
+  @<tr>
+    <td>@item.Title</td>
+    <td>@item.Publisher</td>
+  </tr>)
+</table>
+<br />
+Is this more simple?<br />
+<table>
+    @foreach (ComicBook ck in comics)
+    {
+        <tr>
+            <td>@ck.Title</td>
+            <td>@ck.Publisher</td>
+        </tr>
+    }
+</table>
+
+@*http://haacked.com/archive/2011/02/27/templated-razor-delegates.aspx*@
+Templated Razor Delegates
+@{
+  Func<dynamic, object> b = @<strong>@item</strong>;
+}
+<span>This sentence is @b("In Bold").</span>

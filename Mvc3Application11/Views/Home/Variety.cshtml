@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Variety";
+}
+@if (false)
+{ 
+    <script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script> 
+    <script src="../../Scripts/jquery-ui-1.8.11.min.js" type="text/javascript"></script>     
+    <script src="../../Scripts/modernizr-1.7.min.js" type="text/javascript"></script>
+}
+
+<style type="text/css">
+    .highlight { background-color:#009900;}
+</style>
+<h2>Variety</h2>
+
+<div id="mydiv">This is some text.</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#mydiv").mouseenter(function () {
+            $(this).toggleClass("highlight").css("cursor", "pointer");
+        }).mouseleave(function () {
+            $(this).toggleClass("highlight");
+        }).mouseup(function (e) {
+            alert($(e.target).attr("id"));                                //e.target is raw DOM object
+            $(this).text("X=" + e.pageX + "; Y=" + e.pageY);
+        });
+
+        //not work anymore
+        //        $("mydiv").bind('mouseenter mouseleave mouseup', function (e) {
+        //            $(this).toggleClass('highlight').css('cursor', 'pointer');
+        //            if (e.type == 'mouseup')
+        //                $(this).text("X=" + e.pageX + "; Y=" + e.pageY);
+        //        });
+
+        $("mydiv").hover(function () { }, function () { });
+
+        $("mydiv").hover(function () { $(this).toggleClass("") }); //probably best way
+
+        $("mydiv").toggle(function () { }, function () { }, function () { });
+
+    });
+</script>

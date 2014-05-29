@@ -1,0 +1,53 @@
+﻿@using Mvc3Application11.ExtensionHelper
+@{
+    ViewBag.Title = "Html5Demo";
+}
+
+<h2>Html5Demo</h2>
+
+<div id="user" data-my='{"id":123,"name":"John Doe", "email":"johndoe@mail.com"}'>
+    hello
+</div>
+<script type="text/javascript">
+    //you can even write a small jQuery function which will get your data by default:
+    $.fn.my = function () {
+        /// <summary>
+        /// quick-hand to grab the object in the "data-my" attribute
+        /// </summary>
+        return this.data("my") || {};
+    };
+
+    $(function () {
+        console.log($("#user").data("my").name); //prints "John Doe"
+        console.log($("#user").my().email); //prints "johndoe@mail.com"
+    });
+</script>
+
+@{
+    var user2 = new
+    {
+        id = 123,
+        name = "John Doe Jr.",
+        email = "johndoe@mail.com"
+    };    
+}
+
+
+@*<div id="user2" @MYData(user2)></div>*@
+
+
+<form>
+    <input type="text" name="demo" autofocus required placeholder="name" title="name" />
+    <br />
+    <input type="email" name="demoemail" required placeholder="name@domain.com" title="name@domain.com" />
+    <br />
+    <input type="url" name="demourl" placeholder="http://www.yoursite.com" title="URL must begin with http://" />
+    <br />
+    <input type="tel" name="demotel" placeholder="(###) ###-####" pattern="\(\d\d\d\) \d\d\d\-\d\d\d\d" />
+    <br />
+    <input type="range" name="rating" title="Rating from 0 to 10" min="0" max="10" value="5" />
+    <br />
+    <meter id="meterofdaysinmonth" min="1" max="31" value="12">12th days in month</meter>
+    <input type="submit" name="Submit" value="Send Data" />
+</form>
+

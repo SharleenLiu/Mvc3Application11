@@ -1,0 +1,283 @@
+﻿@{
+    ViewBag.Title = "About Us";   
+}
+@if (false)
+{ 
+    <script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script> 
+    <script src="../../Scripts/jquery-ui-1.8.11.min.js" type="text/javascript"></script> 
+    <script src="../../Scripts/html5shiv.js" type="text/javascript"></script>    
+    <script src="../../Scripts/modernizr-1.7.min.js" type="text/javascript"></script> 
+    @*<script src="../../Scripts/less-1.3.1.min.js" type="text/javascript"></script>*@
+}
+
+<style type="text/css">
+    .none { display:none;}
+    .rules { display:inline;}
+    
+    input{ padding-left:4px; -moz-border-radius:3px; border-radius:3px;}
+    input:valid + .invalid{ visibility:hidden;}  /*Adjacent sibling selector */
+    input:invalid + .invalid{ visibility:visible;}
+    input:required{ border:2px solid #900;}
+    input:valid{ border:2px solid #CCC;}    
+    .invalid{ position:relative; display:block; font-size:0.7em; color:#666; margin-bottom:6px;}
+    
+    
+</style>
+<h2>About</h2>
+<article>
+    If you’re already tired of talk of the “fiscal cliff,” brace yourself:  Several  business-friendly, deficit-unfriendly groups have launched well-funded campaigns hoping to bring even more attention to the issue. One involves a giant walking, talking can.
+
+    “Congress Can No Longer Ignore that the U.S. Economy is Headed Over a Cliff,” the Business Roundtable warns in its ads, launching today. “It’s Time to Act.” In several of the group’s ads, Honeywell Chair and CEO David Cote takes it a bit further. “If the last debt ceiling was playing with fire,” he asserts, “this time they’re playing with nitroglycerin.”
+
+    The Campaign to Fix the Debt, meanwhile, solemnly warns that “Inaction is not an Option,” while yet another group, aimed at young “millennials,” warns that politicians can’t solve the problem by simply “kicking the can down the road,” as the current favorite political cliché has it. The group, “the Millennial-outreach partner” of the Campaign, calls itself “The Can Kicks Back.”
+</article>
+
+<form>
+    <input type="text" id="username" name="username" pattern="[a-zA-Z ]{5,}" placeholder="Username" maxlength="30" required />
+    <div id="usernameRules" class="rules">
+        <span class="valueMissing vmsg none">The user name is required.</span>
+        <span class="patternMismatch vmsg none">The user name must be a series of characters.</span>
+    </div>
+    
+    <label>Email:</label>
+    <input type="email" id="email" name="email" title="Email address is required." placeholder="Email" />
+    <div id="emailRules" class="rules">
+        <span class="valueMissing vmsg none">An email address is required.</span>
+        <span class="typeMismatch vmsg none">Special characters are not allowed.</span>
+    </div>
+    
+    <button type="submit" id="submit" name="submit">Change</button>
+    <input type="button" id="checkValidation" name="checkValidation" value="validation" />
+</form>
+<script>
+    //Build-In Validation Rules:
+    //valueMissing
+    //typeMismatch
+    //patternMismatch
+    //tooLong
+    //rangeUnderflow and rangeOverflow
+    //stepMismatch
+    //valid
+
+    //Create a comtainer for validation rule names.
+    var ruleNames = new Array();
+
+    $(function () {
+
+        //Fills array with rule names.
+        //Looks for all elements with 'vmsg' class and then adds the first class (rule name) to the array.
+        $(".vmsg").each(function (index, element) {
+            if (element.className.indexOf(" ") != -1) {
+                ruleNames[index] = element.className.split(" ")[0];
+            }
+        });
+
+        //Attaches validation event handlers to all input elements that are NOT buttons.
+        $(":input:not(:button)").each(function () {
+            this.oninvalid = validationFail;
+            this.onblur = validate;
+        });
+
+        document.getElementById("checkValidation").onclick = validate;
+    });
+
+    //First clear the UI by hiding all validation messages.
+    //Then run validation rules on the selected form.
+    function validate() {
+        $(".vmsg").addClass("none");
+        document.forms[0].checkValidity();
+    }
+
+    //
+    //
+    function validationFail(e) {
+        var element = e.srcElement;
+        var validity = element.validity;
+        var id = element.id;
+
+        if (!validity.valid) {
+            for (var i = 0; i < ruleNames.length; i++) {
+                checkRule(validity, ruleNames[i], id);
+            }
+            e.preventDefault();
+        }
+    }
+
+    //
+    //
+    function checkRule(validity, ruleName, id) {
+        if (eval("validity." + ruleName)) {
+            $("#" + id + "Rules ." + ruleName).removeClass("none");
+        }
+    }
+
+
+</script>
+
+
+@*<style type="text/css">
+    
+    input{ padding-left:4px; -moz-border-radius:3px; border-radius:3px;}
+    input:valid + .invalid{ visibility:hidden;}  /*Adjacent sibling selector */
+    input:invalid + .invalid{ visibility:visible;}
+    input:required{ border:2px solid #900;}
+    input:valid{ border:2px solid #CCC;}    
+    .invalid{ position:relative; display:block; font-size:0.7em; color:#666; margin-bottom:6px;}
+</style>
+<form>
+    <input type="text" id="username" name="username" pattern="[a-zA-Z ]{5,}" placeholder="Username" maxlength="30" required />
+    <div class="invalid">
+        The required user name may only be a series of alphabetical characters.
+    </div>
+    <input type="email" id="email2" name="email2" placeholder="Email" />
+    <div class="invalid">
+        The required email address may not include any special characters other than the &#39;@@&#39; sign.
+    </div>
+    <button type="submit" id="submit" name="submit">Change</button>
+    <input type="button" id="checkValidation" name="checkValidation" value="validation" />
+</form>*@
+
+
+@*<div id="longnum" data-longnumber='4737377'></div>
+<script>
+    var longnum = document.getElementById('longnum');    
+    $('#longnum').html(longnum.dataset.longnumber);
+
+</script>
+*@
+@*<div id='sunflower' data-leaves='47' data-plant-height='2.4m'></div>
+<script>
+    // 'Getting' data-attributes using dataset
+    var plant = document.getElementById('sunflower');
+
+    var leaves = plant.dataset.leaves; // leaves = 47;
+    alert('data-leaves=' + leaves);
+
+    // 'Setting' data-attributes using dataset
+    var tallness = plant.dataset.plantHeight; // 'plant-height' -> 'plantHeight'
+    alert(tallness);
+
+    plant.dataset.plantHeight = '3.6m';  // Cracking fertiliser
+    alert('after new setup, data-plant-height: ' + plant.dataset.plantHeight);
+
+    plant.dataset.leaves = null; // Caterpillars attack!
+    alert('after set it null, data-leaves: ' + plant.dataset.leaves);
+
+    
+    // Select all elements with a 'data-flowering' attribute
+    document.querySelectorAll('[data-flowering]');
+
+    // Select all elements with red leaves
+    document.querySelectorAll('[data-foliage-colour="red"]');
+
+</script>
+*@
+@*<div id='strawberry-plant' data-fruit='12'></div>
+<script type="text/javascript">
+    // 'Getting' data-attributes using getAttribute
+    var plant = document.getElementById('strawberry-plant');
+    var fruitCount = plant.getAttribute('data-fruit'); // fruitCount = '12'
+    alert("fruitCount=" + fruitCount);
+
+    // 'Setting' data-attributes using setAttribute
+    plant.setAttribute('data-fruit', '7'); // Pesky birds
+    alert('after new setup, data-fruit: ' + plant.getAttribute('data-fruit'));
+</script>
+*@
+
+<div>
+    <ul>
+        <li class="user" data-name="John Resig" data-city="Boston" data-lang="js" data-food="Bacon">
+            <b>John says:</b> <span>Hello, how are you?</span> </li>
+    </ul>
+</div>
+<div id="display1">
+</div>
+
+<form novalidate action="">
+<label>
+    Search:</label>
+<input type="search" id="search" name="search" autofocus />
+<input type="submit" value="GO!" />
+</form>
+@*<form action="">
+<div class="col">
+    <label for="name">
+        Name:</label>
+    <input type="text" id="name" name="name" placeholder="First and Last" required />
+    <label for="email">
+        Email:</label>
+    <input type="text" id="email" name="email" required />
+    <label for="url">
+        URL:</label>
+    <input type="url" id="url" name="url" />
+    <label for="phone">
+        Telephone:</label>
+    <input type="tel" id="phone" name="phone" required />
+    <label for="yearsInDev">
+        Number of Years in Development:</label>
+    <input type="number" id="yearsInDev" name="yearsInDev" min="5" max="40" step="2" />
+    <label for="devExperienceRange">
+        Development Experience Range:</label>
+    <input type="range" id="devExperienceRange" name="devExperienceRange" min="0" max="100"
+        step="1" value="50" />
+    <span id="rangeValue"></span>
+    <label for="tShirtColor">
+        T-Shirt Color:</label>
+    <input type="text" id="tShirtColor" name="tShirtColor" list="colors" />
+    <datalist id="colors">
+        <option value="Blue"></option>
+        <option value="Red"></option>
+        <option value="Green"></option>
+    </datalist>
+</div>
+<div class="col">
+    <label for="bgcolor">
+        Background Color</label>
+    <input type="color" id="bgcolor" name="bgcolor" value="rgb(128,0,0)" />
+    <label for="arrivalDate">
+        Arrival Date</label>
+    <input type="date" id="" name="" value="2011-01-01" min="2011-01-01" max="2021-12-31" />
+    <label for="arrivalDT">
+        Arrival Date/Time</label>
+    <input type="datetime" id="arrivalDT" name="arrivalDT" value="2012-01-01 09:30:10 UTC" />
+    <label for="arrivalDTLocal">
+        Arrival Date/Time Local</label>
+    <input type="datetime-local" id="arrivalDTLocal" name="arrivalDTLocal" value="2012-01-01 09:30:10" />
+    <label for="arrivalTime">
+        Arrival Time</label>
+    <input type="time" id="arrivalTime" name="arrivalTime" value="09:30:10" />
+    <label for="birthMonth">
+        Birth Month</label>
+    <input type="month" id="birthMonth" name="birthMonth" value="1963-03" />
+    <label for="vacationWeek">
+        Vacation Week</label>
+    <input type="week" id="vacationWeek" name="vacationWeek" value="2011-W26" />
+</div>
+</form>
+*@
+<script type="text/javascript">
+   
+    var pos = 0;  //span = user.getElementsByTagName("span")[0];
+    var phrases = [
+      { name: "city", prefix: "I am from " },
+      { name: "food", prefix: "I like to eat " },
+      { name: "lang", prefix: "I like to program in " }
+    ];
+
+    $(".user").click(function () {
+        var phrase = phrases[pos++];
+        $("#display1").html(phrase.prefix + $(".user").attr("data-" + phrase.name));
+    });
+
+    //----
+    var rangeValue = document.getElementById("rangeValue");
+    var devExperienceRange = document.getElementById("devExperienceRange");
+
+    devExperienceRange.onchange = function () {
+        rangeValue.innerText = this.value;
+    }
+
+    rangeValue.innerText = devExperienceRange.value;
+     
+</script>

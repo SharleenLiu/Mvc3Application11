@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link href="../../Content/css3/JonFlanders.css" rel="stylesheet" type="text/css" />
+
+<h1>Responsive Design Web demo for CSS3</h1>
+<audio id="oooh" controls>
+    <source src="../../Content/audio/Kalimba.mp3" type="audio/mp3" />
+</audio>
+<audio id="aaah" controls>
+    <source src="../../Content/audio/MaidwithFlaxenHair.mp3" type="audio/mp3" />
+</audio>
+@*also you can use*@
+<script>
+    $(function () {
+        $(window).resize(function () {
+            if ('styleMedia' in window && window.styleMedia.matchMedium("screen and (max-width:768px)")) {
+                $('#oooh')[0].play();
+                $('#aaah')[0].pause();
+            }
+            else {
+                $('#aaah')[0].play();
+                $('#oooh')[0].pause();
+            }
+        });
+    });
+</script>
+
+
+
+
+

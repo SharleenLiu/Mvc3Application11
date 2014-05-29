@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@helper PluralPicks(int amount, string singular, string plural) {
+    <span> 
+        @amount @(amount == 1 ? singular : plural)
+    </span>
+}
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div>
+        
+    </div>
+</body>
+</html>
